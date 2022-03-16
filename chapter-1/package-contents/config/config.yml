@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: simple-server-app
-        image: docker.io/prewar/simple-server@sha256:452f0d74bd18c7110022815e6c8eeafeaada6f93eeb030d3efcd5c0df3eadcbd
+        image: docker.io/prewar/simple-server:latest
         env:
         - name: USER_NAME
           value: #@ data.values.user_name

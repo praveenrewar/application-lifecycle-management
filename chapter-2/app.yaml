@@ -1,0 +1,17 @@
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: hello-app
+  namespace: default
+spec:
+  serviceAccountName: default-ns-sa
+  fetch:
+    - git:
+        url: https://github.com/praveenrewar/application-lifecycle-management
+        ref: origin/main
+  template:
+    - ytt:
+        paths:
+        - chapter-1/package-contents/config
+  deploy:
+    - kapp: {}

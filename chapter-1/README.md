@@ -145,7 +145,12 @@ ytt template -f .
 ```
 will yield the templated result.
 
-Feel free to change up the default value for `user_name`!
+Now if we were to provide custom values to override the defaults. We would add another file `values.yml`
+```
+#@data/values
+---
+user_name: soumik
+```
 
 We can now pipe the templated manifest from `ytt` to `kapp` and deploy the templated resources.
 
@@ -155,6 +160,6 @@ ytt template -f . | kapp deploy -a simple-server -f - --yes
 
 We can now use `kubectl port-forward` to see that the changes have taken affect✨
 
-At the end of this chapter, the files in `starter-config` should look something like `/config`
+At the end of this chapter, the files in `starter-config` should look something like `/config` (excluding `values.yml` that we used to provid custom input)
 
 In chapter-2, we will replicate this inner loop workflow declaratively.

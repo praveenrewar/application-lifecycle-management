@@ -22,6 +22,7 @@ metadata:
   namespace: default
   name: simple-server-app
 spec:
+  replicas: 3
   selector:
     matchLabels: #@ labels()
   template:

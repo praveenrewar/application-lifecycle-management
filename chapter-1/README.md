@@ -1,4 +1,4 @@
-# Creating templated manifests and deploying them safely and reliably
+# Creating templated manifests and deploying them safely
 
 The `/app` directory defines a simple web-app which has a response which is configured by the environment variable `USER_NAME`. We have built a docker image for the same so that we can easily deploy it on top of Kubernetes.
 We can find the image [here](https://hub.docker.com/r/prewar/simple-server/).
@@ -60,7 +60,7 @@ After confirming the changes, `kapp` waits for our deployment to reach it's desi
 
 We should be able to see the resources created by running,
 ```bash
-kapp inspect -a simple-server
+kapp inspect -a simple-server -t
 ```
 
 Let's have a look at how our application looks like. Let's forward the port exposed by the service to our system.

@@ -13,7 +13,7 @@ metadata:
 spec:
   ports:
   - port: #@ data.values.svc_port
-    targetPort: #@ data.values.app_port
+    targetPort: 8081
   selector: #@ labels()
 ---
 apiVersion: apps/v1

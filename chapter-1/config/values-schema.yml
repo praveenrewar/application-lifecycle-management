@@ -2,7 +2,5 @@
 ---
 #@schema/desc "Port number for the service."
 svc_port: 8081
-#@schema/desc "Target port for the application."
-app_port: 8081
 #@schema/desc "Name used in hello message from app when app is pinged."
 user_name: stranger

@@ -1,0 +1,13 @@
+---
+apiVersion: imgpkg.carvel.dev/v1alpha1
+images:
+- annotations:
+    kbld.carvel.dev/id: docker.io/prewar/simple-server:latest
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: latest
+          url: docker.io/prewar/simple-server:latest
+      - preresolved:
+          url: index.docker.io/prewar/simple-server@sha256:452f0d74bd18c7110022815e6c8eeafeaada6f93eeb030d3efcd5c0df3eadcbd
+  image: index.docker.io/prewar/simple-server@sha256:452f0d74bd18c7110022815e6c8eeafeaada6f93eeb030d3efcd5c0df3eadcbd
+kind: ImagesLock

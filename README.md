@@ -1,4 +1,4 @@
-# Apllication Lifecycle Management
+# Application Lifecycle Management
 
 This tutorial goes over how the Carvel toolset addresses some of the problems frequently faced while managing and distributing applications buit on top of Kubernetes.
 
@@ -54,5 +54,8 @@ Lca: Last Change Age
 
 Succeeded
 ```
+
+## Other requirements
+- Do take some time to create a Docker Hub account, it will be useful chapter-3 onwards
 
 If you have made it this far, we are good to get started with chapter-1!

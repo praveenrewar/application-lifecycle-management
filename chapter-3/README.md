@@ -21,15 +21,17 @@ In this chapter we will:
 - Bundle our manifests into an OCI image and push it to a registry so that it can be used by a package
 
 ## Resolving images to their digest form using `kbld`
-To start off lets have a look at the `/starter-config`. It consists of what we had at the end of chapter-1.
+To start off lets have a look at the `/starter-config`. It consists of what we had at the end of chapter-1 in a folder `config`
 ```bash
 $ cd starter-config
 $ ls
+config
+$ ls config
 config.yml        values-schema.yml
 ```
 We would want to first template using `ytt` and then convert the image references to their digest form.
 ```bash
-$ ytt template -f . | kbld -f .
+$ ytt template -f config | kbld -f -
 ```
 We can see that the output has all the images resolved to their digest form. We could pipe this output to `kapp` in order to deploy manifests with resolved images.
 
@@ -41,7 +43,7 @@ $ mkdir .imgpkg
 ```
 We can now generate the lockfile by running
 ```bash
-ytt template -f . | kbld -f - --imgpkg-lock-output .imgpkg/images.yml 
+ytt template -f config | kbld -f - --imgpkg-lock-output .imgpkg/images.yml 
 ```
 If we take a look at the generated file it looks something like this,
 ```yaml
@@ -54,8 +56,6 @@ images:
       - resolved:
           tag: latest
           url: docker.io/prewar/simple-server:latest
-      - preresolved:
-          url: index.docker.io/prewar/simple-server@sha256:452f0d74bd18c7110022815e6c8eeafeaada6f93eeb030d3efcd5c0df3eadcbd
   image: index.docker.io/prewar/simple-server@sha256:452f0d74bd18c7110022815e6c8eeafeaada6f93eeb030d3efcd5c0df3eadcbd
 kind: ImagesLock
 ```
@@ -75,9 +75,10 @@ imgpkg push -b 100mik/hello-app -f .
 dir: .
 dir: .imgpkg
 file: .imgpkg/images.yml
-file: config.yml
-file: values-schema.yml
-Pushed 'index.docker.io/100mik/hello-app@sha256:03f4c4ae65a33a15db62036936af0bf8fa74fe465bdeb1aa1f1ffafdd508dc0e'
+dir: config
+file: config/config.yml
+file: config/values-schema.yml
+Pushed 'index.docker.io/100mik/hello-app@sha256:29c02895e51a0157ff844afd97a8ccd42a7ba0dd2e89bf5f9c6a668e17482ccb'
 Succeeded
 ```
 

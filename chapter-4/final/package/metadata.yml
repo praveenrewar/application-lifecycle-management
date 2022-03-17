@@ -1,0 +1,11 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: PackageMetadata
+metadata:
+  name: hello-app.corp.com
+spec:
+  displayName: "hello-app"
+  longDescription: "A simple configurable app to demonstrate Carvel's packaging API"
+  shortDescription: "Web Server"
+  providerName: Carvel
+  maintainers:
+    - name: Soumik Majumder

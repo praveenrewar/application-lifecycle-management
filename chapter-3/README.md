@@ -35,7 +35,7 @@ $ ytt template -f config | kbld -f -
 ```
 We can see that the output has all the images resolved to their digest form. We could pipe this output to `kapp` in order to deploy manifests with resolved images.
 
-However, since we intend to bundle the manifest into a bundle using `imgpkg`. We will be generate a lock file which points `imgpkg` to the resolved references.
+However, since we intend to bundle the manifest into a bundle using `imgpkg`. We will be generate a lock file which takes note of the image digests that were used at the time of bundling.
 
 Lets create a folder for our lockfile.
 ```bash

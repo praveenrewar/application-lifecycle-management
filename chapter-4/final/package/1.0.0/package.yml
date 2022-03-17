@@ -1,0 +1,33 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: hello-app.corp.com.1.0.0
+spec:
+  refName: hello-app.corp.com
+  version: 1.0.0
+  template:
+    spec:
+      fetch:
+        - imgpkgBundle:
+            image: index.docker.io/100mik/hello-app@sha256:29c02895e51a0157ff844afd97a8ccd42a7ba0dd2e89bf5f9c6a668e17482ccb
+      template:
+        - ytt:
+            paths:
+              - config/
+        - kbld:
+            paths:
+              - "-"
+              - .imgpkg/images.yml
+      deploy:
+        - kapp: {}
+  capacityRequirementsDescription: "Varies significantly based on number of Certificate objects"
+  valuesSchema:
+    openAPIv3:
+      title: cert-manager.community.tanzu.vmware.com.1.6.1 values schema
+      examples:
+        - namespace: cert-manager
+      properties:
+        namespace:
+          type: string
+          description: The namespace in which to deploy cert-manager.
+          default: cert-manager

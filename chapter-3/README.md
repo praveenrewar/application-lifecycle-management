@@ -84,6 +84,17 @@ Succeeded
 
 Now we can use the immutable image which has our configuration with references to resolved image as a source for out Package.
 
+It is worth noting that the file structure for the directory which we bundle into an `imgpkg` generally looks something like this:
+```bash
+my-pkg/
+└── .imgpkg/
+    └── images.yml
+└── config/
+    └── config.yml
+    └── config-2.yml
+    └── values-schema.yml
+```
+
 We define the workflow a Package installation creates on the server similar to how we defined a workflow in our App CR. An `imgpkg` bundle is one of the sources we can "fetch" our resources from. So our Package will be pointing towards the bundled image with our manifests which is immutable instead of a mutable git repository.
 
 Let's dive into how we can author, version and distribute packages in chapter-4!

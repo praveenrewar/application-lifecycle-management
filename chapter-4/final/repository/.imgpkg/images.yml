@@ -1,0 +1,7 @@
+---
+apiVersion: imgpkg.carvel.dev/v1alpha1
+images:
+- annotations:
+    kbld.carvel.dev/id: index.docker.io/100mik/hello-app@sha256:29c02895e51a0157ff844afd97a8ccd42a7ba0dd2e89bf5f9c6a668e17482ccb
+  image: index.docker.io/100mik/hello-app@sha256:29c02895e51a0157ff844afd97a8ccd42a7ba0dd2e89bf5f9c6a668e17482ccb
+kind: ImagesLock

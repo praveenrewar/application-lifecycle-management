@@ -91,7 +91,7 @@ We can see that `kapp` says that it will create Package and PackageMetadata reso
 
 We could definitely add individual packages using `kapp`, however we putting it into a repository makes it easier for our users to consume packages.
 
-## Creating a packaage repository
+## Creating a package repository
 
 A package repository is an `imgpkg` bundle structured in a certain manner. It looks something like this,
 ```

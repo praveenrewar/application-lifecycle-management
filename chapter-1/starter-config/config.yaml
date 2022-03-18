@@ -29,6 +29,15 @@ spec:
       containers:
       - name: simple-server-app
         image: docker.io/prewar/simple-server:latest
-        env:
-        - name: USER_NAME
-          value: "stranger"
+        envFrom:
+          - configMapRef:
+              name: simple-app-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simple-app-config
+  annotations:
+    kapp.k14s.io/versioned: ""
+data:
+  USER_NAME: John Doe

@@ -44,9 +44,18 @@ spec:
       containers:
       - name: simple-server-app
         image: docker.io/prewar/simple-server:latest
-        env:
-        - name: USER_NAME
-          value: "John Doe"
+        envFrom:
+          - configMapRef:
+              name: simple-app-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simple-app-config
+  annotations:
+    kapp.k14s.io/versioned: ""
+data:
+  USER_NAME: John Doe
 
 ```
 While defining the container which is running the image we set the value of environment variable `USER_NAME` to "John Doe".
@@ -70,7 +79,7 @@ kubectl port-forward svc/simple-server-app 8081:8081
 
 We should be able to see "Hello, John Doe", if we open up `localhost:8081` in our browsers.
 
-Let's see how `kapp` deals with updates to the cluster. You can use a text editor of your choice to change the value of `spec.replicas` to 2.
+Let's see how `kapp` deals with updates to the cluster. You can use a text editor of your choice to change the value of `USER_NAME` to a name of your choice.
 
 Now we can update the app by deploying it again,
 ```bash
@@ -94,11 +103,9 @@ We can now template parts of the manifest, like ports exposed and targeted and t
 spec:
   ports:
   - port: #@ data.values.svc_port
-    targetPort: #@ data.values.app_port
 #...
 #...
-        - name: USER_NAME
-          value: #@ data.values.user_name
+  USER_NAME:: #@ data.values.user_name
 ```
 
 To define descriptions and default values for our supplied values we can create a file `values-schema.yaml` with the following contents.

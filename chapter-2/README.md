@@ -44,7 +44,7 @@ We specify the link to a github repository and the branch it should fetch, we te
 
 We can now create this custom resource on the cluster.
 ```bash
-$ kapp deploy -a hello-app -f app.yaml
+kapp deploy -a hello-app -f app.yaml
 ```
 After confirming the changes and waiting for the app to reconcile, lets list the kapp apps on the cluster.
 ```bash

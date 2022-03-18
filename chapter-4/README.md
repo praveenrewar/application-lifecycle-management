@@ -29,8 +29,8 @@ This metadata will be referenced by all versions of our package.
 
 Lets make a directory for the first version of our package,
 ```bash
-$ mkdir 1.0.0
-$ cd 1.0.0
+mkdir 1.0.0
+cd 1.0.0
 ```
 
 We can now define a package in file `package.yml`.
@@ -84,8 +84,8 @@ This is pretty similar to what we defined to our App CR, with a few minor differ
 
 With that, our package is ready, let's go back to the chapter-4 directory and try deploying it using `kapp`.
 ```bash
-$ cd ../..
-$ kapp deploy -a test-pkg -f package
+cd ../..
+kapp deploy -a test-pkg -f package
 ```
 We can see that `kapp` says that it will create Package and PackageMetadata resources. We can go ahead and say that we do not want to create these resources, as we will add this Package to a repository before consunming it. (If you have confirmed the changes you can delete them by running `kapp delete -a test-pkg`)
 
@@ -126,14 +126,14 @@ $ mkdir repository
 ```
 Create the folder structure above,
 ```bash
-$ mkdir repository/.imgpkg 
-$ mkdir repository/packages
-$ mkdir repository/packages/hello-app.corp.com
+mkdir repository/.imgpkg 
+mkdir repository/packages
+mkdir repository/packages/hello-app.corp.com
 ```
 Copy the required files from our package into the correct folder,
 ```bash
-$ cp package/metadata.yml repository/packages/hello-app.corp.com/metadata.yml
-$ cp package/1.0.0/package.yml repository/packages/hello-app.corp.com/1.0.0.yml
+cp package/metadata.yml repository/packages/hello-app.corp.com/metadata.yml
+cp package/1.0.0/package.yml repository/packages/hello-app.corp.com/1.0.0.yml
 ```
 
 We will generate the lock file for the images used using `kbld`.
@@ -163,19 +163,19 @@ Package consumers can now consume the Packages in the repo easily using `kctrl` 
 ## Consuming packages
 Let us start by adding the packages bundled into the repo to the cluster.
 ```bash
-$ kctrl package repo add -r hello-repo --url index.docker.io/100mik/hello-app-repo@sha256:912c02a668cb871134bf1e90997fe24b15de0e9a02769d24b12e5fbf0c256bf1
+kctrl package repo add -r hello-repo --url index.docker.io/100mik/hello-app-repo@sha256:912c02a668cb871134bf1e90997fe24b15de0e9a02769d24b12e5fbf0c256bf1
 ```
 `kctrl` waits for the repository to add the bundld packages to the cluster. We can now list the packages on the cluster.
 ```bash
-$ kctrl package available list
+kctrl package available list
 ```
 We can get more information about the package and view the versions available on the cluster.
 ```bash
-$ kctrl package available get -p hello-app.corp.com
+kctrl package available get -p hello-app.corp.com
 ```
 Lets install the package on the cluster,
 ```bash
-$ kctrl package install -i hello-app -p hello-app.corp.com --version 1.0.0
+kctrl package install -i hello-app -p hello-app.corp.com --version 1.0.0
 ```
 `kctrl` waits for the app to finish reconciling, that is, till the resources bundled into the package are created on the cluster.
 
@@ -185,18 +185,18 @@ kapp list
 ```
 We can see that an app `hello-app-ctrl` has been created on the cluster. We can inspect it to ensure that the resources we were trying to install are up and running.
 ```bash
-$ kapp inspect -a hello-app-ctrl -t
+kapp inspect -a hello-app-ctrl -t
 ```
 Lets see if our app works by using port-forward.
 ```bash
-$ kubectl port-forward svc/simple-server-app 8081:8081
+kubectl port-forward svc/simple-server-app 8081:8081
 ```
 We can open up `https://localhost:8081` in a browser to verify that the app is up and running.
 
 Now that we have installed the package, lets try and configure it.
 We can list configurable values by,
 ```
-$ kctrl package available get -p hello-app.corp.com/1.0.0 --values-schema
+kctrl package available get -p hello-app.corp.com/1.0.0 --values-schema
 ```
 Note that we specify a version here as configurable values might change over versions.
 
@@ -207,11 +207,11 @@ user_name: 100mik
 ```
 (Feel free to add your own name)
 ```bash
-$ kctrl package intalled update -i hello-app --values-file values.yml
+kctrl package intalled update -i hello-app --values-file values.yml
 ```
 Once the installation has reconciled, we can port forward again and verify that the app has upgraded.
 ```bash
-$ kubectl port-forward svc/simple-server-app 8081:8081
+kubectl port-forward svc/simple-server-app 8081:8081
 ```
 Now if we open up the app in our browser windows, it should greet you with the configured username!
 

@@ -54,7 +54,7 @@ While defining the container which is running the image we set the value of envi
 ## Deploying resources using `kapp`
 To deploy our resources onto the cluster, we will use `kapp`
 ```bash
-$ kapp deploy -a simple-server -f config.yaml
+kapp deploy -a simple-server -f config.yaml
 ```
 After confirming the changes, `kapp` waits for our deployment to reach it's desired state. We group our resources into an abstract app called 'simple-server'.
 
@@ -74,7 +74,7 @@ Let's see how `kapp` deals with updates to the cluster. You can use a text edito
 
 Now we can update the app by deploying it again,
 ```bash
-$ kapp deploy -a simple-server -f config.yaml -c
+kapp deploy -a simple-server -f config.yaml -c
 ```
 `kapp` show the changes to the user, asks for confirmation and then waits for the resource to reach it's desired state.
 

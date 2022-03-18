@@ -31,7 +31,7 @@ config.yml        values-schema.yml
 ```
 We would want to first template using `ytt` and then convert the image references to their digest form.
 ```bash
-$ ytt template -f config | kbld -f -
+ytt template -f config | kbld -f -
 ```
 We can see that the output has all the images resolved to their digest form. We could pipe this output to `kapp` in order to deploy manifests with resolved images.
 
@@ -39,7 +39,7 @@ However, since we intend to bundle the manifest into a bundle using `imgpkg`. We
 
 Lets create a folder for our lockfile.
 ```bash
-$ mkdir .imgpkg
+mkdir .imgpkg
 ```
 We can now generate the lockfile by running
 ```bash
@@ -67,11 +67,11 @@ Make sure that you run `docker login` to authenticate into Deocker Hub before co
 
 The command to push the image that has our manmifests bundled will look something like:
 ```bash
-$ imgpkg push -b <docker-hub-username>/hello-app -f .
+imgpkg push -b <docker-hub-username>/hello-app -f .
 ```
 The end result is something like this.
 ```bash
-imgpkg push -b 100mik/hello-app -f .
+$ imgpkg push -b 100mik/hello-app -f .
 dir: .
 dir: .imgpkg
 file: .imgpkg/images.yml

@@ -15,21 +15,23 @@ Once set up, running `kubectl api-resources` should list all available api-resou
 We will first install the Carvel CLI tools.
 We can do this by running,
 ```bash
-$ wget -O- https://carvel.dev/install.sh | bash
-# or with curl...
-$ curl -L https://carvel.dev/install.sh | bash
+wget -O- https://carvel.dev/install.sh | bash
+```
+Or with curl...
+```bash
+curl -L https://carvel.dev/install.sh | bash
 ```
 
 Alternatively if you prefer `brew`,
 ```bash
-$ brew tap vmware-tanzu/carvel
-$ brew install ytt kbld kapp imgpkg kwt vendir
+brew tap vmware-tanzu/carvel
+brew install ytt kbld kapp imgpkg kwt vendir
 ```
 should get us up and runnning with the tools.
 
 We can now install kapp-controller on the cluster by running,
 ```bash
-$ kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
 ```
 Confirm the changes to the cluster when you are prompted.
 

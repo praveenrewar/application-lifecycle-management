@@ -3,16 +3,13 @@
 This tutorial goes over how the Carvel toolset addresses some of the problems frequently faced while managing and distributing applications buit on top of Kubernetes.
 
 ## Pre-requisites
-- An active kubernetes cluster and kubectl to interact with cluster resources.
+- An active kubernetes cluster and `kubectl` to interact with cluster resources.
     - For this tutorial, a `minikube` cluster on your system works just fine. We can find installation instructions for the same [here](https://minikube.sigs.k8s.io/docs/start/). (Alternatives such as `kind` work just as well)
     - Installation instructions for `kubectl` can be found [here](https://kubernetes.io/docs/tasks/tools/#kubectl)
 
-Once set up, running
-```bash
-kubectl api-resources
-```
-Should list all available api-resources on the cluster. And we are good to go 🚀
-If the user is on Windows we recommend using WSL.
+Once set up, running `kubectl api-resources` should list all available api-resources on the cluster. And we are good to go 🚀
+
+*Note:* If the user is on Windows we recommend using WSL.
 
 ## Setting up the Carvel tools
 We will first install the Carvel CLI tools.
@@ -36,7 +33,7 @@ $ kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/re
 ```
 Confirm the changes to the cluster when you are prompted.
 
-Once successful, the out put of kapp list should look something like this:
+Once successful, the output of kapp list should look something like this:
 ```bash
 $ kapp list
 

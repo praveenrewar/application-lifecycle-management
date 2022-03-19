@@ -25,7 +25,7 @@ curl -L https://carvel.dev/install.sh | bash
 Alternatively if you prefer `brew`,
 ```bash
 brew tap vmware-tanzu/carvel
-brew install ytt kbld kapp imgpkg kwt vendir
+brew install ytt kbld kapp imgpkg kwt vendir kctrl
 ```
 should get us up and runnning with the tools.
 

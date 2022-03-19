@@ -31,7 +31,7 @@ should get us up and runnning with the tools.
 
 We can now install kapp-controller on the cluster by running,
 ```bash
-kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml
+kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/latest/download/release.yml -y
 ```
 Confirm the changes to the cluster when you are prompted.
 

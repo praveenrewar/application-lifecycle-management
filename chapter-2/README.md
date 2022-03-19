@@ -36,7 +36,7 @@ spec:
   template:
     - ytt:
         paths:
-        - chapter-1/package-contents/config
+        - chapter-1/config
   deploy:
     - kapp: {}
 ```
@@ -71,22 +71,25 @@ Here, `hello-app` consists of our App CR where as `hello-app-ctrl` is created by
 We can find the resources deployed by running,
 ```bash
 $ kapp inspect -a hello-app-ctrl -t
-Target cluster 'https://192.168.64.7:8443' (nodes: minikube)
+Target cluster 'https://192.168.64.9:8443' (nodes: minikube)
 
 Resources in app 'hello-app-ctrl'
 
 Namespace  Name                                     Kind           Owner    Conds.  Rs  Ri  Age  
-default    simple-server-app                        Deployment     kapp     2/2 t   ok  -   31s  
-default     L simple-server-app-676f4ff96c          ReplicaSet     cluster  -       ok  -   31s  
-default     L.. simple-server-app-676f4ff96c-82gw8  Pod            cluster  4/4 t   ok  -   31s  
-default    simple-server-app                        Service        kapp     -       ok  -   31s  
-default     L simple-server-app                     Endpoints      cluster  -       ok  -   31s  
-default     L simple-server-app-c5hcf               EndpointSlice  cluster  -       ok  -   31s  
+default    simple-server-app                        Deployment     kapp     2/2 t   ok  -   1m  
+default     L simple-server-app-6cb797b95c          ReplicaSet     cluster  -       ok  -   1m  
+default     L.. simple-server-app-6cb797b95c-8xttn  Pod            cluster  4/4 t   ok  -   1m  
+default     L.. simple-server-app-6cb797b95c-gm685  Pod            cluster  4/4 t   ok  -   1m  
+default     L.. simple-server-app-6cb797b95c-rrvdf  Pod            cluster  4/4 t   ok  -   1m  
+default    simple-app-config-ver-1                  ConfigMap      kapp     -       ok  -   1m  
+default    simple-server-app                        Service        kapp     -       ok  -   1m  
+default     L simple-server-app                     Endpoints      cluster  -       ok  -   1m  
+default     L simple-server-app-x2clv               EndpointSlice  cluster  -       ok  -   1m  
 
 Rs: Reconcile state
 Ri: Reconcile information
 
-6 resources
+9 resources
 
 Succeeded
 ```
